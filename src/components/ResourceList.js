@@ -1,33 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import jsonPlaceholder from "../apis/jsonPlaceholder";
+import useResources from "../utils/useResources";
 
 const ResourceList = ({ resource }) => {
-  const [resources, setResources] = useState([]);
-
-  useEffect(() => {
-    (async () => {
-      const response = await jsonPlaceholder.get(`/${resource}`);
-
-      setResources(response.data);
-    })();
-  }, [resource]);
-
-  /*
-
-  Another alternative:
-
-  useEffect(() => {
-    fetchData();
-  }, [resource]);
-
-  const fetchData = async () => {
-    const response = await jsonPlaceholder.get(`/${resource}`);
-
-    setResources(response.data);
-  };
-
-  */
+  const resources = useResources(resource);
 
   const renderList = () => {
     return (
